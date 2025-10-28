@@ -5,7 +5,6 @@ This repository contains Infrastructure-as-Code (IaC) for deploying and managing
 ---
 
 ## 📁 Project Structure
-
     ```text
     connect-setup/
     ├── terraform/ # All Terraform IaC code
@@ -57,6 +56,7 @@ This repository contains Infrastructure-as-Code (IaC) for deploying and managing
     terraform validate
     terraform plan
     terraform apply
+    
     Make a copy of the queue arn (printed in the terminal as my_queue_arn) 
 
 4. **Update code**
