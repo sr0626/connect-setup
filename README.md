@@ -5,7 +5,6 @@ This repository contains Infrastructure-as-Code (IaC) for deploying and managing
 ---
 
 ## 📁 Project Structure
-    ```text
     connect-setup/
     ├── terraform/ # All Terraform IaC code
     │ ├── 1_instance.tf # Instance configuration
