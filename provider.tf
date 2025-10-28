@@ -1,0 +1,34 @@
+terraform {
+  required_version = ">=1.5.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+
+    archive = {
+      source  = "hashicorp/archive"
+      version = "2.7.1"
+    }
+  }
+}
+
+# terraform {
+#   required_providers {
+#     aws = {
+#         source = "hashicorp/aws"
+#         version = "~> 6.0"
+#     }
+#   }
+# }
+
+provider "aws" {
+  region = "us-west-2"
+
+  default_tags {
+    tags = {
+      Owner   = "Sateesh-IaC"
+      Purpose = "aws_skill_builder"
+    }
+  }
+}
