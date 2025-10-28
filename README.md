@@ -6,28 +6,27 @@ This repository contains Infrastructure-as-Code (IaC) for deploying and managing
 
 ## 📁 Project Structure
 
-```text
-connect-setup/
-├── terraform/ # All Terraform IaC code
-│ ├── 1_instance.tf # Instance configuration
-│ ├── 1a_phone_number.tf # Phone number provisioning
-│ ├── 2_users.tf # Users setup
-│ ├── 3_hours_of_operation.tf # Hours of Operation setup
-│ ├── 4_queues.tf # Queues setup
-│ ├── 5_routing_profiles.tf # Routing profiles setup
-│ ├── 6_contact_flows.tf # Contact flows setup
-│ ├── storage.tf # Connect storage setup
-│ ├── main.tf # Main configuration for Connect resources
-│ ├── variables.tf # Input variables
-│ ├── output.tf # Terraform outputs
-│ ├── data.tf # Terraform data load
-│ ├── kms.tf # Terraform kms
-│ ├── provider.tf # Terraform provider setup
-├── json/ # Contact flows (exported as json), prompts, etc.
-│ ├── contact_flows/
-│ ├── prompts/
-└── README.md
-
+    ```text
+    connect-setup/
+    ├── terraform/ # All Terraform IaC code
+    │ ├── 1_instance.tf # Instance configuration
+    │ ├── 1a_phone_number.tf # Phone number provisioning
+    │ ├── 2_users.tf # Users setup
+    │ ├── 3_hours_of_operation.tf # Hours of Operation setup
+    │ ├── 4_queues.tf # Queues setup
+    │ ├── 5_routing_profiles.tf # Routing profiles setup
+    │ ├── 6_contact_flows.tf # Contact flows setup
+    │ ├── storage.tf # Connect storage setup
+    │ ├── main.tf # Main configuration for Connect resources
+    │ ├── variables.tf # Input variables
+    │ ├── output.tf # Terraform outputs
+    │ ├── data.tf # Terraform data load
+    │ ├── kms.tf # Terraform kms
+    │ ├── provider.tf # Terraform provider setup
+    ├── json/ # Contact flows (exported as json), prompts, etc.
+    │ ├── contact_flows/
+    │ ├── prompts/
+    └── README.md
 
 
 ---
