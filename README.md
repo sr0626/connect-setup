@@ -59,7 +59,7 @@ connect-setup/
     4. terraform apply
     5. Make a copy of the queue arn (printed in the terminal as my_queue_arn) 
 
-4. **Update coee**
+4. **Update code**
     1. Uncomment all the code in 1a_phone_number.tf file
     2. Unomment all the code in 6_contact_flows.tf file
     3. Open MyInboundFlow.json (under json/contact_flows folder)
