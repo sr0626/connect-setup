@@ -1,33 +1,54 @@
-# Local Terraform directories
-.terraform/
-.terraform.lock.hcl
-
-# Terraform state files
-terraform.tfstate
-terraform.tfstate.*
-*.tfstate.backup
+# -------------------------------
+# Terraform (state + cache)
+# -------------------------------
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.*
+terraform/*.tfstate.backup
 
 # Crash logs
-crash.log
-crash.*.log
+terraform/crash.log
+terraform/crash.*.log
 
-# Sensitive files
-*.tfvars
-*.tfvars.json
+# Sensitive variable files
+terraform/*.tfvars
+terraform/*.tfvars.json
 
-# Override files (local only)
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+# Local override files
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
 
-# IDE and OS files
+# -------------------------------
+# JSON / Artifacts / Outputs
+# -------------------------------
+json/**/*.backup
+json/**/*.tmp
+json/**/*.log
+
+# -------------------------------
+# IDE / OS / Editor files
+# -------------------------------
 .vscode/
 .idea/
 .DS_Store
+Thumbs.db
 *.swp
 
-# Node / Python / other build artifacts (optional)
+# -------------------------------
+# Build / Runtime / Cache
+# -------------------------------
 node_modules/
 __pycache__/
 .env
+*.pyc
+*.log
+*.zip
+
+# -------------------------------
+# Misc
+# -------------------------------
+*.bak
+*.retry
