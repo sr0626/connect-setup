@@ -6,6 +6,7 @@ This repository contains Infrastructure-as-Code (IaC) for deploying and managing
 
 ## 📁 Project Structure
 
+```text
 connect-setup/
 ├── terraform/ # All Terraform IaC code
 │ ├── 1_instance.tf # Instance configuration
@@ -25,7 +26,6 @@ connect-setup/
 ├── json/ # Contact flows (exported as json), prompts, etc.
 │ ├── contact_flows/
 │ ├── prompts/
-│ 
 └── README.md
 
 
@@ -53,11 +53,12 @@ connect-setup/
     2. Comment all the code in 6_contact_flows.tf file
 
 3. **Run terraform commands from the terminal**
-    1. terraform init
-    2. terraform validate
-    3. terraform plan
-    4. terraform apply
-    5. Make a copy of the queue arn (printed in the terminal as my_queue_arn) 
+    ```bash
+    terraform init
+    terraform validate
+    terraform plan
+    terraform apply
+    Make a copy of the queue arn (printed in the terminal as my_queue_arn) 
 
 4. **Update code**
     1. Uncomment all the code in 1a_phone_number.tf file
@@ -66,15 +67,15 @@ connect-setup/
     4. Replace <<MY_QUEUE_ID>> with the arn copied above  
     5. Rerun terraform apply command
 
-2. **Validation**
-  1. Call the phone number provisioned  (output prited as did_number)
-  2. Confirm the call is answered
-  3. Select the options provided
-  4. Wait for the call to be queued for an agent
-  5. Login to Agent Workspace or CCP (as an agent or admin)
-  6. Change the status to Available
-  7. Call is auto-accepted
-  8. Hangup the call
-  8. Close contact
-  9. Check your s3 bucket for call recordings
-  10. Check CW logs group for the call trace
+5. **Validation**
+    1. Call the phone number provisioned  (output prited as did_number)
+    2. Confirm the call is answered
+    3. Select the options provided
+    4. Wait for the call to be queued for an agent
+    5. Login to Agent Workspace or CCP (as an agent or admin)
+    6. Change the status to Available
+    7. Call is auto-accepted
+    8. Hangup the call
+    9. Close contact
+    10. Check your s3 bucket for call recordings
+    11. Check CW logs group for the call trace
