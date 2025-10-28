@@ -18,8 +18,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Owner   = "Terraform-IaC"
-      Purpose = "aws_skill_builder"
+      Owner   = "Terraform_IaC"
+      Purpose = "AWS_Skill_Builder_Series"
     }
   }
 }

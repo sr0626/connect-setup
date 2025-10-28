@@ -9,6 +9,6 @@ resource "aws_connect_contact_flow" "test" {
 
 
 data "aws_connect_contact_flow" "basic" {
-  instance_id  = aws_connect_instance.test.id
-  name         = "Sample inbound flow (first contact experience)"
+  instance_id = aws_connect_instance.test.id
+  name        = "Sample inbound flow (first contact experience)"
 }

@@ -1,13 +1,13 @@
 locals {
   ctr-stream = "${var.instance_alias}-ctr-stream"
-  ae-stream = "${var.instance_alias}-ae-stream"
+  ae-stream  = "${var.instance_alias}-ae-stream"
 }
 
 resource "aws_connect_instance" "test" {
-  identity_management_type = "CONNECT_MANAGED"
-  inbound_calls_enabled    = true
-  instance_alias           = var.instance_alias
-  outbound_calls_enabled   = true
+  identity_management_type  = "CONNECT_MANAGED"
+  inbound_calls_enabled     = true
+  instance_alias            = var.instance_alias
+  outbound_calls_enabled    = true
   contact_flow_logs_enabled = true
 }
 
@@ -21,14 +21,14 @@ resource "aws_iam_service_linked_role" "connect" {
 }
 
 data "aws_iam_role" "connect_slr" {
-  name = "AWSServiceRoleForAmazonConnect"
+  name       = "AWSServiceRoleForAmazonConnect"
   depends_on = [aws_iam_service_linked_role.connect]
 }
 
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
-    sid     = "AllowConnectWrites"
-    effect  = "Allow"
+    sid    = "AllowConnectWrites"
+    effect = "Allow"
     actions = [
       "s3:GetObject",
       "s3:PutObject",
@@ -67,7 +67,7 @@ resource "aws_connect_instance_storage_config" "chat_store" {
 
       encryption_config {
         encryption_type = "KMS"
-        key_id          = data.aws_kms_alias.test.target_key_arn
+        key_id          = aws_kms_alias.test.target_key_arn
       }
     }
 
@@ -87,7 +87,7 @@ resource "aws_connect_instance_storage_config" "call_store" {
 
       encryption_config {
         encryption_type = "KMS"
-        key_id          = data.aws_kms_alias.test.target_key_arn
+        key_id          = aws_kms_alias.test.target_key_arn
       }
     }
 
@@ -107,7 +107,7 @@ resource "aws_connect_instance_storage_config" "report_store" {
 
       encryption_config {
         encryption_type = "KMS"
-        key_id          = data.aws_kms_alias.test.target_key_arn
+        key_id          = aws_kms_alias.test.target_key_arn
       }
     }
 

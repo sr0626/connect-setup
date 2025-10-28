@@ -10,7 +10,7 @@ resource "aws_connect_routing_profile" "test" {
   }
 
   queue_configs {
-    channel = "VOICE"
+    channel  = "VOICE"
     queue_id = aws_connect_queue.test.queue_id
     priority = 1
     delay    = 2

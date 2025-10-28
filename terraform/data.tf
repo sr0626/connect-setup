@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 # --- Look up built-in "Admin" Security Profile ---
 data "aws_connect_security_profile" "admin" {
   depends_on  = [time_sleep.after_instance]
@@ -37,7 +39,7 @@ data "aws_connect_contact_flow" "default_outbound" {
 # }
 
 
-data "aws_kms_alias" "test" {
-  name        = "alias/test-key"
-}
+# data "aws_kms_alias" "test" {
+#   name        = "alias/test-key"
+# }
 

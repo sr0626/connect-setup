@@ -1,7 +1,7 @@
 resource "aws_connect_phone_number" "test" {
   country_code = "US"
-  target_arn = aws_connect_instance.test.arn
-  type = "DID"
+  target_arn   = aws_connect_instance.test.arn
+  type         = "DID"
 }
 
 resource "aws_connect_phone_number_contact_flow_association" "test" {

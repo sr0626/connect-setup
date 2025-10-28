@@ -1,26 +1,33 @@
-# KMS key policy permissions for the Connect service-linked role
-# data "aws_iam_policy_document" "kms_policy" {
-#   statement {
-#     sid     = "AllowConnectUseOfKms"
-#     effect  = "Allow"
-#     principals {
-#       type        = "AWS"
-#       identifiers = [data.aws_iam_role.connect_slr.arn]
-#     }
-#     actions = [
-#       "kms:Encrypt",
-#       "kms:Decrypt",
-#       "kms:GenerateDataKey*",
-#       "kms:ReEncrypt*",
-#       "kms:DescribeKey"
-#     ]
-#     resources = ["*"]
-#   }
-# }
+data "aws_iam_policy_document" "kms_policy" {
+  # --- Admin / safety: retain control of the key policy ---
+  statement {
+    sid    = "EnableIAMUserPermissions"
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+    }
+    actions   = ["kms:*"]
+    resources = ["*"]
+  }
+}
 
-# If you own/manage the CMK, attach/update this policy
-# resource "aws_kms_key" "connect" {
-#   description             = "CMK for Amazon Connect artifacts"
-#   deletion_window_in_days = 7
-#   policy                  = data.aws_iam_policy_document.kms_policy.json
-# }
+resource "aws_kms_key" "test" {
+  description             = "CMK for Amazon Connect artifacts"
+  deletion_window_in_days = 7
+  enable_key_rotation     = true
+  policy                  = data.aws_iam_policy_document.kms_policy.json
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "aws_kms_alias" "test" {
+  name          = "alias/connect"
+  target_key_id = aws_kms_key.test.key_id
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
