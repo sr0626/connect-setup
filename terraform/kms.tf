@@ -18,16 +18,16 @@ resource "aws_kms_key" "test" {
   enable_key_rotation     = true
   policy                  = data.aws_iam_policy_document.kms_policy.json
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   c = true
+  # }
 }
 
 resource "aws_kms_alias" "test" {
   name          = "alias/connect"
   target_key_id = aws_kms_key.test.key_id
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
