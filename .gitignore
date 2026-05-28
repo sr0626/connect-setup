@@ -24,6 +24,7 @@ terraform/*_override.tf.json
 # -------------------------------
 # JSON / Artifacts / Outputs
 # -------------------------------
+artifacts/
 json/**/*.backup
 json/**/*.tmp
 json/**/*.log

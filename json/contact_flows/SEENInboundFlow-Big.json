@@ -1,0 +1,2083 @@
+{
+	"Version": "2019-10-30",
+	"StartAction": "a01",
+	"Actions": [
+		{
+			"Identifier": "a01",
+			"Type": "UpdateContactRecordingBehavior",
+			"Parameters": {
+				"RecordingBehavior": {
+					"RecordedParticipants": [
+						"Agent",
+						"Customer"
+					]
+				}
+			},
+			"Transitions": {
+				"NextAction": "a02",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a02",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Welcome to the SEER IVR. Please listen carefully to the following options AND select one option using your key pad."
+			},
+			"Transitions": {
+				"NextAction": "a03",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a03",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Press 1 for check-in. Press 2 for check-out. Press 3 to transfer to another department.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "30",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a03_norm",
+				"Errors": [
+					{
+						"NextAction": "a04",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a03_norm",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"rawInput": "$.StoredCustomerInput",
+					"lambdaAction": "normalize-input"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a03_lam",
+				"Errors": [
+					{
+						"NextAction": "a03_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a03_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a03_chk",
+				"Errors": [
+					{
+						"NextAction": "a04",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a03_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.cleanInput"
+			},
+			"Transitions": {
+				"NextAction": "a04",
+				"Errors": [
+					{
+						"NextAction": "a04",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a10",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"1"
+							]
+						}
+					},
+					{
+						"NextAction": "a30",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"2"
+							]
+						}
+					},
+					{
+						"NextAction": "a50_chk",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"3"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a04",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I am sorry, I did not recognize that selection. Let me repeat the options."
+			},
+			"Transitions": {
+				"NextAction": "a03",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a10",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "For check-in, please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a11",
+				"Errors": [
+					{
+						"NextAction": "a10b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a10b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I did not receive your SEEN ID. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "a10c",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a10c",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a11",
+				"Errors": [
+					{
+						"NextAction": "a10d",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a10d",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I still did not receive your SEEN ID. One final attempt."
+			},
+			"Transitions": {
+				"NextAction": "a10e",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a10e",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a11",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a11",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"seenId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-seen-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a12",
+				"Errors": [
+					{
+						"NextAction": "a12",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a12",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a13",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a13",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.seenIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a14",
+				"Errors": [
+					{
+						"NextAction": "a14",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a20",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a14",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Your SEEN ID was not found in our system. Please try entering it again."
+			},
+			"Transitions": {
+				"NextAction": "a15",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a15",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a16",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a16",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"seenId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-seen-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a17",
+				"Errors": [
+					{
+						"NextAction": "a17",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a17",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a18",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a18",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.seenIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a19",
+				"Errors": [
+					{
+						"NextAction": "a19",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a20",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a19",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We were unable to verify your SEEN ID. Thank you for calling. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a20",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Thank you. Now please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a21",
+				"Errors": [
+					{
+						"NextAction": "a20b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a20b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I did not receive your Substation ID. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "a20c",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a20c",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a21",
+				"Errors": [
+					{
+						"NextAction": "a20d",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a20d",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Still no input received. One final attempt."
+			},
+			"Transitions": {
+				"NextAction": "a20e",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a20e",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a21",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a21",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"substationId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-substation-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a22",
+				"Errors": [
+					{
+						"NextAction": "a22",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a22",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a23",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a23",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.substationIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a24",
+				"Errors": [
+					{
+						"NextAction": "a24",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a25",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a24",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Your Substation ID was not found. Please try entering it again."
+			},
+			"Transitions": {
+				"NextAction": "a24b",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a24b",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a24c",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a24c",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"substationId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-substation-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a24d",
+				"Errors": [
+					{
+						"NextAction": "a24d",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a24d",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a24e",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a24e",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.substationIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a24f",
+				"Errors": [
+					{
+						"NextAction": "a24f",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a25",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a24f",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We were unable to verify your Substation ID. Thank you for calling. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a25",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 10-digit callback phone number followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a26",
+				"Errors": [
+					{
+						"NextAction": "a25b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a25b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I did not receive your phone number. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "a25c",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a25c",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 10-digit callback phone number followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a26",
+				"Errors": [
+					{
+						"NextAction": "a25d",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a25d",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Still no input. One final attempt."
+			},
+			"Transitions": {
+				"NextAction": "a25e",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a25e",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 10-digit callback phone number followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a26",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a26",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"phoneNumber": "$.StoredCustomerInput",
+					"lambdaAction": "write-check-in"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a27",
+				"Errors": [
+					{
+						"NextAction": "a27",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a27",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a28",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a28",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Your check-in has been recorded successfully. Thank you for using SEER. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a30",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "For check-out, please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a31",
+				"Errors": [
+					{
+						"NextAction": "a30b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a30b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I did not receive your SEEN ID. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "a30c",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a30c",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a31",
+				"Errors": [
+					{
+						"NextAction": "a30d",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a30d",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Still no input. One final attempt."
+			},
+			"Transitions": {
+				"NextAction": "a30e",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a30e",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a31",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a31",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"seenId": "$.StoredCustomerInput"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub1",
+				"Errors": [
+					{
+						"NextAction": "co_sub1",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub1",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Now please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_save",
+				"Errors": [
+					{
+						"NextAction": "co_sub1b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub1b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "I did not receive your Substation ID. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "co_sub2",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub2",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_save",
+				"Errors": [
+					{
+						"NextAction": "co_sub2b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub2b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Still no input. One final attempt."
+			},
+			"Transitions": {
+				"NextAction": "co_sub3",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub3",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_save",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_save",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"substationId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-substation-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_lam",
+				"Errors": [
+					{
+						"NextAction": "co_sub_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_sub_chk",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.substationIdValid"
+			},
+			"Transitions": {
+				"NextAction": "co_sub_rp",
+				"Errors": [
+					{
+						"NextAction": "co_sub_rp",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "co_val_set",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_rp",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Your Substation ID was not found. Please try once more."
+			},
+			"Transitions": {
+				"NextAction": "co_sub_r_in",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_r_in",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_r_save",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_r_save",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"substationId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-substation-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_sub_r_lam",
+				"Errors": [
+					{
+						"NextAction": "co_sub_r_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_r_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_sub_r_chk",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_sub_r_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.substationIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a_bye_exit",
+				"Errors": [
+					{
+						"NextAction": "a_bye_exit",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "co_val_set",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "co_val_set",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"lambdaAction": "validate-check-out"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_val_lam",
+				"Errors": [
+					{
+						"NextAction": "co_val_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_val_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_val_chk",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_val_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.checkoutValidation"
+			},
+			"Transitions": {
+				"NextAction": "co_fr_msg",
+				"Errors": [
+					{
+						"NextAction": "co_fr_msg",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "co_save_ts",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "co_save_ts",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"activeCheckinTimestamp": "$.External.activeCheckinTimestamp",
+					"lambdaAction": "write-check-out"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_write_lam",
+				"Errors": [
+					{
+						"NextAction": "co_write_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_write_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_success",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_success",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Your check-out has been completed successfully. Thank you for using SEER. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_msg",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We could not find an active check-in with those credentials. Please try again."
+			},
+			"Transitions": {
+				"NextAction": "co_fr_seen",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_seen",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your 8-digit SEEN ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "8"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_fr_seen_save",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_seen_save",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"seenId": "$.StoredCustomerInput"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_fr_sub",
+				"Errors": [
+					{
+						"NextAction": "co_fr_sub",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_sub",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Please enter your Substation ID followed by the pound sign.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "15",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_fr_sub_save",
+				"Errors": [
+					{
+						"NextAction": "a_bye_noinput",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_sub_save",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"substationId": "$.StoredCustomerInput",
+					"lambdaAction": "validate-substation-id"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_fr_sub_lam",
+				"Errors": [
+					{
+						"NextAction": "co_fr_sub_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_sub_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_fr_sub_chk",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_sub_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.substationIdValid"
+			},
+			"Transitions": {
+				"NextAction": "a_bye_exit",
+				"Errors": [
+					{
+						"NextAction": "a_bye_exit",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "co_fr_val_set",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_val_set",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"lambdaAction": "validate-check-out"
+				}
+			},
+			"Transitions": {
+				"NextAction": "co_fr_val_lam",
+				"Errors": [
+					{
+						"NextAction": "co_fr_val_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_val_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "co_fr_val_chk",
+				"Errors": [
+					{
+						"NextAction": "a_lambda_error",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "co_fr_val_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.checkoutValidation"
+			},
+			"Transitions": {
+				"NextAction": "a_bye_exit",
+				"Errors": [
+					{
+						"NextAction": "a_bye_exit",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "co_save_ts",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"true"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a50_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.Channel"
+			},
+			"Transitions": {
+				"NextAction": "a50_chat",
+				"Errors": [
+					{
+						"NextAction": "a50_chat",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a50_voice",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"VOICE"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a50_chat",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Transfer to another department is only available for voice calls. Returning to the main menu."
+			},
+			"Transitions": {
+				"NextAction": "a03",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a50_voice",
+			"Type": "GetParticipantInput",
+			"Parameters": {
+				"Text": "Press 1 for ${TransferDest1Name}. Press 2 for ${TransferDest2Name}. Press 3 for ${TransferDest3Name}.",
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "30",
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "10"
+					}
+				}
+			},
+			"Transitions": {
+				"NextAction": "a50_norm",
+				"Errors": [
+					{
+						"NextAction": "a50b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a50_norm",
+			"Type": "UpdateContactAttributes",
+			"Parameters": {
+				"Attributes": {
+					"rawInput": "$.StoredCustomerInput",
+					"lambdaAction": "normalize-input"
+				}
+			},
+			"Transitions": {
+				"NextAction": "a50_lam",
+				"Errors": [
+					{
+						"NextAction": "a50_lam",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a50_lam",
+			"Type": "InvokeLambdaFunction",
+			"Parameters": {
+				"LambdaFunctionARN": "${LambdaFunctionArn}",
+				"InvocationTimeLimitSeconds": "8"
+			},
+			"Transitions": {
+				"NextAction": "a50_voice_chk",
+				"Errors": [
+					{
+						"NextAction": "a50b",
+						"ErrorType": "NoMatchingError"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a50_voice_chk",
+			"Type": "Compare",
+			"Parameters": {
+				"ComparisonValue": "$.External.cleanInput"
+			},
+			"Transitions": {
+				"NextAction": "a50b",
+				"Errors": [
+					{
+						"NextAction": "a50b",
+						"ErrorType": "NoMatchingCondition"
+					}
+				],
+				"Conditions": [
+					{
+						"NextAction": "a51",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"1"
+							]
+						}
+					},
+					{
+						"NextAction": "a52",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"2"
+							]
+						}
+					},
+					{
+						"NextAction": "a53",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": [
+								"3"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"Identifier": "a50b",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Invalid selection. Returning to the main menu."
+			},
+			"Transitions": {
+				"NextAction": "a03",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a51",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Connecting you to ${TransferDest1Name}. Please hold."
+			},
+			"Transitions": {
+				"NextAction": "a51b",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a51b",
+			"Type": "TransferContactToQueue",
+			"Parameters": {
+			},
+			"Transitions": {
+				"NextAction": "a_transfer_fail",
+				"Errors": [
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "NoMatchingError"
+					},
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "QueueAtCapacity"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a52",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Connecting you to ${TransferDest2Name}. Please hold."
+			},
+			"Transitions": {
+				"NextAction": "a52b",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a52b",
+			"Type": "TransferContactToQueue",
+			"Parameters": {
+			},
+			"Transitions": {
+				"NextAction": "a_transfer_fail",
+				"Errors": [
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "NoMatchingError"
+					},
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "QueueAtCapacity"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a53",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Connecting you to ${TransferDest3Name}. Please hold."
+			},
+			"Transitions": {
+				"NextAction": "a53b",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a53b",
+			"Type": "TransferContactToQueue",
+			"Parameters": {
+			},
+			"Transitions": {
+				"NextAction": "a_transfer_fail",
+				"Errors": [
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "NoMatchingError"
+					},
+					{
+						"NextAction": "a_transfer_fail",
+						"ErrorType": "QueueAtCapacity"
+					}
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a_transfer_fail",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We were unable to complete the transfer. Thank you for calling. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a_bye_exit",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "Thank you for calling. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a_bye_noinput",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We did not receive your input. Thank you for calling. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a_lambda_error",
+			"Type": "MessageParticipant",
+			"Parameters": {
+				"Text": "We are experiencing technical difficulties. Please try again later. Goodbye."
+			},
+			"Transitions": {
+				"NextAction": "a_disconnect",
+				"Errors": [
+
+				],
+				"Conditions": [
+
+				]
+			}
+		},
+		{
+			"Identifier": "a_disconnect",
+			"Type": "DisconnectParticipant",
+			"Parameters": {
+			},
+			"Transitions": {
+			}
+		}
+	]
+}

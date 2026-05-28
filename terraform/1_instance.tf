@@ -16,13 +16,13 @@ resource "time_sleep" "after_instance" {
   create_duration = "45s"
 }
 
-resource "aws_iam_service_linked_role" "connect" {
-  aws_service_name = "connect.amazonaws.com"
-}
+# resource "aws_iam_service_linked_role" "connect" {
+#   aws_service_name = "connect.amazonaws.com"
+# }
 
 data "aws_iam_role" "connect_slr" {
   name       = "AWSServiceRoleForAmazonConnect"
-  depends_on = [aws_iam_service_linked_role.connect]
+  #depends_on = [aws_iam_service_linked_role.connect]
 }
 
 data "aws_iam_policy_document" "bucket_policy" {
@@ -56,7 +56,7 @@ resource "aws_s3_bucket_policy" "connect_artifacts" {
 }
 
 resource "aws_connect_instance_storage_config" "chat_store" {
-  depends_on    = [aws_iam_service_linked_role.connect]
+  #depends_on    = [aws_iam_service_linked_role.connect]
   instance_id   = aws_connect_instance.test.id
   resource_type = "CHAT_TRANSCRIPTS"
 
@@ -76,7 +76,8 @@ resource "aws_connect_instance_storage_config" "chat_store" {
 }
 
 resource "aws_connect_instance_storage_config" "call_store" {
-  depends_on    = [aws_iam_service_linked_role.connect, aws_s3_bucket_policy.connect_artifacts]
+  #depends_on    = [aws_iam_service_linked_role.connect, aws_s3_bucket_policy.connect_artifacts]
+  depends_on    = [aws_s3_bucket_policy.connect_artifacts]
   instance_id   = aws_connect_instance.test.id
   resource_type = "CALL_RECORDINGS"
 
@@ -95,22 +96,23 @@ resource "aws_connect_instance_storage_config" "call_store" {
   }
 }
 
-resource "aws_connect_instance_storage_config" "report_store" {
-  depends_on    = [aws_iam_service_linked_role.connect, aws_s3_bucket_policy.connect_artifacts]
-  instance_id   = aws_connect_instance.test.id
-  resource_type = "SCHEDULED_REPORTS"
+# resource "aws_connect_instance_storage_config" "report_store" {
+#   #depends_on    = [aws_iam_service_linked_role.connect, aws_s3_bucket_policy.connect_artifacts]
+#   depends_on    = [aws_s3_bucket_policy.connect_artifacts]
+#   instance_id   = aws_connect_instance.test.id
+#   resource_type = "SCHEDULED_REPORTS"
 
-  storage_config {
-    s3_config {
-      bucket_name   = aws_s3_bucket.connect_artifacts.id
-      bucket_prefix = "reports"
+#   storage_config {
+#     s3_config {
+#       bucket_name   = aws_s3_bucket.connect_artifacts.id
+#       bucket_prefix = "reports"
 
-      encryption_config {
-        encryption_type = "KMS"
-        key_id          = aws_kms_alias.test.target_key_arn
-      }
-    }
+#       encryption_config {
+#         encryption_type = "KMS"
+#         key_id          = aws_kms_alias.test.target_key_arn
+#       }
+#     }
 
-    storage_type = "S3"
-  }
-}
+#     storage_type = "S3"
+#   }
+# }

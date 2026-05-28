@@ -1,0 +1,211 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "RouteMainMenu",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "RouteInvalidOption": {
+        "position": {
+          "x": 121.6,
+          "y": 429.6
+        },
+        "isFriendlyName": true
+      },
+      "RouteMainMenu": {
+        "position": {
+          "x": 168,
+          "y": 38.4
+        },
+        "isFriendlyName": true,
+        "conditionMetadata": [
+          {
+            "id": "d00d7258-7535-493a-be7c-42cc96f29eae",
+            "value": "1"
+          },
+          {
+            "id": "532a93d6-f983-487f-b7f0-31af5f9a2509",
+            "value": "2"
+          },
+          {
+            "id": "34f16e46-0173-4d77-b1c9-81be56f70acc",
+            "value": "3"
+          }
+        ]
+      },
+      "8d864514-8b0f-4213-a3d7-a18a5e38a82e": {
+        "position": {
+          "x": 454.4,
+          "y": 39.2
+        },
+        "parameters": {
+          "ThirdPartyPhoneNumber": {
+            "countryCode": "US"
+          }
+        },
+        "CountryCode": "us"
+      },
+      "RouteErrorPrompt": {
+        "position": {
+          "x": 423.2,
+          "y": 328
+        },
+        "isFriendlyName": true
+      },
+      "RouteDisconnect": {
+        "position": {
+          "x": 689.6,
+          "y": 386.4
+        },
+        "isFriendlyName": true
+      }
+    },
+    "Annotations": [],
+    "name": "SEENRouteCall",
+    "description": "",
+    "status": "published",
+    "settings": {},
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "I didn't understand your selection.  "
+      },
+      "Identifier": "RouteInvalidOption",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "RouteMainMenu",
+        "Errors": [
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "False",
+        "InputTimeLimitSeconds": "5",
+        "Text": "Press 1 to forward your call to EDOC, 2 to TGM, 3 to WDOC"
+      },
+      "Identifier": "RouteMainMenu",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "RouteInvalidOption",
+        "Conditions": [
+          {
+            "NextAction": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "1"
+              ]
+            }
+          },
+          {
+            "NextAction": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "2"
+              ]
+            }
+          },
+          {
+            "NextAction": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "3"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "RouteInvalidOption",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          {
+            "NextAction": "RouteInvalidOption",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ThirdPartyPhoneNumber": "+19722000725",
+        "ThirdPartyConnectionTimeLimitSeconds": "30",
+        "ContinueFlowExecution": "True"
+      },
+      "Identifier": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
+      "Type": "TransferParticipantToThirdParty",
+      "Transitions": {
+        "NextAction": "RouteDisconnect",
+        "Errors": [
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "CallFailed"
+          },
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "ConnectionTimeLimitExceeded"
+          },
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "We are experiencing difficulties in forwarding your call.  Please try again later.."
+      },
+      "Identifier": "RouteErrorPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "RouteDisconnect",
+        "Errors": [
+          {
+            "NextAction": "RouteDisconnect",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "RouteDisconnect",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}
