@@ -149,17 +149,17 @@ Note the `did_number` output — this is the phone number callers dial.
 
 ## Seed Data
 
-`9_dynamodb_seed.tf` seeds the reference tables with sample SEEN IDs and substations:
+`9_dynamodb_seed.tf` seeds the reference tables with sample SEEN IDs and substations for local testing.
 
 **SEEN IDs (Personnel)**
 
 | SEEN ID | Name | Active |
 |---|---|---|
-| 1001 | Sateesh Rudrangi | yes |
-| 1002 | Deepak Duvvuru | yes |
-| 1003 | Jerry Oliver | yes |
-| 20041 | Tim Tye | yes |
-| 20052 | Eve Martinez | no |
+| 1001 | John Smith | yes |
+| 1002 | Jane Doe | yes |
+| 1003 | Bob Johnson | yes |
+| 20041 | Alice Brown | yes |
+| 20052 | Charlie Davis | no |
 
 **Substations**
 
