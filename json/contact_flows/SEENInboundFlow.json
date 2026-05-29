@@ -7,31 +7,6 @@
       "y": 0
     },
     "ActionMetadata": {
-      "8937d08f-2036-4019-89ac-2750e51ad53e": {
-        "position": {
-          "x": 280,
-          "y": 260
-        }
-      },
-      "CheckSeenValidationResponse": {
-        "position": {
-          "x": 1960,
-          "y": 0
-        },
-        "isFriendlyName": true,
-        "conditions": [],
-        "conditionMetadata": [
-          {
-            "id": "33265e13-f6b5-4c8b-8b28-0f0f3807afe4",
-            "operator": {
-              "name": "Equals",
-              "value": "Equals",
-              "shortDisplay": "="
-            },
-            "value": "true"
-          }
-        ]
-      },
       "CheckSEENStatus": {
         "position": {
           "x": 2800,
@@ -41,7 +16,7 @@
         "conditions": [],
         "conditionMetadata": [
           {
-            "id": "7a6d63bd-dc4f-46a9-b814-6f8e84bd4df7",
+            "id": "cb8d063f-13be-41eb-a5f5-bdfed50392b1",
             "operator": {
               "name": "Equals",
               "value": "Equals",
@@ -50,14 +25,6 @@
             "value": "true"
           }
         ]
-      },
-      "StoreSEENId": {
-        "position": {
-          "x": 1400,
-          "y": 0
-        },
-        "isFriendlyName": true,
-        "dynamicParams": []
       },
       "6040b57d-802c-46b2-8433-d0472ab7f552": {
         "position": {
@@ -71,68 +38,6 @@
         },
         "dynamicMetadata": {}
       },
-      "HelloNamePrompt": {
-        "position": {
-          "x": 2240,
-          "y": 0
-        },
-        "isFriendlyName": true
-      },
-      "GetSEENStatus": {
-        "position": {
-          "x": 2520,
-          "y": 0
-        },
-        "isFriendlyName": true,
-        "parameters": {
-          "LambdaFunctionARN": {
-            "displayName": "SEENGetStatus"
-          }
-        },
-        "dynamicMetadata": {}
-      },
-      "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c": {
-        "position": {
-          "x": 560,
-          "y": 0
-        }
-      },
-      "WelcomePrompt": {
-        "position": {
-          "x": 840,
-          "y": 0
-        },
-        "isFriendlyName": true
-      },
-      "SetActionTypeCheckIn": {
-        "position": {
-          "x": 840,
-          "y": 260
-        },
-        "isFriendlyName": true,
-        "dynamicParams": []
-      },
-      "RenterSeenIdPrompt": {
-        "position": {
-          "x": 2240,
-          "y": 260
-        },
-        "isFriendlyName": true
-      },
-      "SetActionTypeCheckOut": {
-        "position": {
-          "x": 1120,
-          "y": 520
-        },
-        "isFriendlyName": true,
-        "dynamicParams": []
-      },
-      "83b76e76-52cc-4732-81ff-1519b0c0f132": {
-        "position": {
-          "x": 1680,
-          "y": 520
-        }
-      },
       "ValidateSubStationID": {
         "position": {
           "x": 3640,
@@ -145,13 +50,6 @@
           }
         },
         "dynamicMetadata": {}
-      },
-      "MakeValidMainMenuSelection": {
-        "position": {
-          "x": 280,
-          "y": 780
-        },
-        "isFriendlyName": true
       },
       "26abc9f3-c43f-4426-ba92-32cfc652f6d1": {
         "position": {
@@ -168,6 +66,14 @@
         },
         "contactFlowModuleName": "SEENRouteCall"
       },
+      "OverwriteActionTypeCheckOut": {
+        "position": {
+          "x": 3640,
+          "y": 0
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
       "SetActionTypeRouteCall": {
         "position": {
           "x": 560,
@@ -176,21 +82,42 @@
         "isFriendlyName": true,
         "dynamicParams": []
       },
-      "CaptureSEENId": {
+      "CurrentlyCheckedIn": {
         "position": {
-          "x": 1120,
+          "x": 3080,
+          "y": 1040
+        },
+        "isFriendlyName": true,
+        "conditionMetadata": [
+          {
+            "id": "a57528c1-2c84-420f-a51c-f4b03f498ae6",
+            "value": "1"
+          }
+        ]
+      },
+      "StoreSEENId": {
+        "position": {
+          "x": 1400,
           "y": 0
         },
         "isFriendlyName": true,
-        "conditionMetadata": [],
-        "countryCodePrefix": "+1"
+        "dynamicParams": []
       },
-      "InvalidActionPrompt": {
+      "SetActionTypeCheckIn": {
+        "position": {
+          "x": 840,
+          "y": 260
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "SetActionTypeCheckOut": {
         "position": {
           "x": 1120,
-          "y": 780
+          "y": 520
         },
-        "isFriendlyName": true
+        "isFriendlyName": true,
+        "dynamicParams": []
       },
       "StoreSubStationId": {
         "position": {
@@ -200,10 +127,46 @@
         "isFriendlyName": true,
         "dynamicParams": []
       },
+      "MakeValidMainMenuSelection": {
+        "position": {
+          "x": 279.2,
+          "y": 779.2
+        },
+        "isFriendlyName": true
+      },
+      "InvalidActionPrompt": {
+        "position": {
+          "x": 1120,
+          "y": 780
+        },
+        "isFriendlyName": true
+      },
+      "CaptureSEENId": {
+        "position": {
+          "x": 1119.2,
+          "y": -0.8
+        },
+        "isFriendlyName": true,
+        "conditionMetadata": [],
+        "countryCodePrefix": "+1"
+      },
+      "RenterSeenIdPrompt": {
+        "position": {
+          "x": 2240,
+          "y": 260
+        },
+        "isFriendlyName": true
+      },
+      "83b76e76-52cc-4732-81ff-1519b0c0f132": {
+        "position": {
+          "x": 1680,
+          "y": 520
+        }
+      },
       "CaptureSubStationID": {
         "position": {
           "x": 3080,
-          "y": 780
+          "y": 778.4
         },
         "isFriendlyName": true,
         "conditionMetadata": [],
@@ -211,8 +174,8 @@
       },
       "InvalidSubstationPrompt": {
         "position": {
-          "x": 3640,
-          "y": 780
+          "x": 3639.2,
+          "y": 779.2
         },
         "isFriendlyName": true
       },
@@ -225,7 +188,7 @@
         "conditions": [],
         "conditionMetadata": [
           {
-            "id": "8d79ef18-509b-43b8-a647-1abdee83d6a6",
+            "id": "88097e0c-7840-4cb5-a965-d2bc8d42829a",
             "operator": {
               "name": "Equals",
               "value": "Equals",
@@ -241,54 +204,6 @@
           "y": 780
         },
         "isFriendlyName": true
-      },
-      "SuccessfulCheckedInPrompt": {
-        "position": {
-          "x": 5320,
-          "y": 780
-        },
-        "isFriendlyName": true
-      },
-      "CheckActionType2": {
-        "position": {
-          "x": 2800,
-          "y": 260
-        },
-        "isFriendlyName": true,
-        "conditions": [],
-        "conditionMetadata": [
-          {
-            "id": "06901ccc-9eb7-434e-a41b-ae0cc772f826",
-            "operator": {
-              "name": "Equals",
-              "value": "Equals",
-              "shortDisplay": "="
-            },
-            "value": "CheckIn"
-          },
-          {
-            "id": "2a7dcbeb-ef85-4ed6-bf84-df4013ce9773",
-            "operator": {
-              "name": "Equals",
-              "value": "Equals",
-              "shortDisplay": "="
-            },
-            "value": "CheckOut"
-          }
-        ]
-      },
-      "CurrentlyCheckedIn": {
-        "position": {
-          "x": 3080,
-          "y": 1040
-        },
-        "isFriendlyName": true,
-        "conditionMetadata": [
-          {
-            "id": "91a2b0ae-e8cb-4aff-aee3-0f86cdd18225",
-            "value": "1"
-          }
-        ]
       },
       "CapturePhoneNumber": {
         "position": {
@@ -306,27 +221,73 @@
         },
         "isFriendlyName": true
       },
-      "CheckOutWaitPrompt": {
+      "8937d08f-2036-4019-89ac-2750e51ad53e": {
         "position": {
-          "x": 2800,
-          "y": 520
-        },
-        "isFriendlyName": true
+          "x": 124.8,
+          "y": -36
+        }
       },
-      "OverwriteActionTypeCheckOut": {
+      "SetTTSVoice": {
         "position": {
-          "x": 3640,
+          "x": 319.2,
+          "y": -46.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "TextToSpeechVoice": {
+            "languageCode": "en-US"
+          }
+        },
+        "overrideConsoleVoice": true
+      },
+      "CheckActionType3": {
+        "position": {
+          "x": 3080,
+          "y": 0
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "89b843a6-1737-4b9d-bc53-f511b54fe32d",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "CheckIn"
+          },
+          {
+            "id": "cae53359-3ae8-444c-b1a5-7c424b173d75",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "CheckOut"
+          }
+        ]
+      },
+      "OverwriteActionType2": {
+        "position": {
+          "x": 3360,
           "y": 0
         },
         "isFriendlyName": true,
         "dynamicParams": []
       },
-      "CallEndPrompt": {
+      "CurrentlyNotCheckedIn": {
         "position": {
-          "x": 3080,
-          "y": 520
+          "x": 3079.2,
+          "y": 259.2
         },
-        "isFriendlyName": true
+        "isFriendlyName": true,
+        "conditionMetadata": [
+          {
+            "id": "c86d42f3-07b9-4274-9012-0b81c9efa9ae",
+            "value": "1"
+          }
+        ]
       },
       "CheckCheckInOutStatus": {
         "position": {
@@ -337,7 +298,7 @@
         "conditions": [],
         "conditionMetadata": [
           {
-            "id": "224357e1-1ff0-455a-939b-34cad35653df",
+            "id": "a7827e56-818e-49d5-80f7-ede0069288ae",
             "operator": {
               "name": "Equals",
               "value": "Equals",
@@ -347,10 +308,24 @@
           }
         ]
       },
+      "CallEndPrompt": {
+        "position": {
+          "x": 3080,
+          "y": 520
+        },
+        "isFriendlyName": true
+      },
       "UnableToCheckIn": {
         "position": {
-          "x": 5040,
-          "y": 1040
+          "x": 5037.6,
+          "y": 1037.6
+        },
+        "isFriendlyName": true
+      },
+      "SuccessfulCheckedInPrompt": {
+        "position": {
+          "x": 5319.2,
+          "y": 779.2
         },
         "isFriendlyName": true
       },
@@ -363,7 +338,7 @@
         "conditions": [],
         "conditionMetadata": [
           {
-            "id": "2150d215-4f19-47b6-9857-fbf4587df3d3",
+            "id": "33a7ab96-679f-429a-9d80-9fe917a28eb2",
             "operator": {
               "name": "Equals",
               "value": "Equals",
@@ -372,7 +347,7 @@
             "value": "CheckIn"
           },
           {
-            "id": "f1657b8e-b654-4916-8a8e-394c41813649",
+            "id": "0c584772-7d5d-4e71-96a0-9c826e096501",
             "operator": {
               "name": "Equals",
               "value": "Equals",
@@ -382,31 +357,44 @@
           }
         ]
       },
+      "SuccessfulCheckedOutPrompt": {
+        "position": {
+          "x": 5317.6,
+          "y": 1036.8
+        },
+        "isFriendlyName": true
+      },
+      "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c": {
+        "position": {
+          "x": 560,
+          "y": 0
+        }
+      },
       "CaptureMainMenu": {
         "position": {
           "x": 560,
-          "y": 260
+          "y": 258.4
         },
         "isFriendlyName": true,
         "conditionMetadata": [
           {
-            "id": "d9424462-86ba-417d-9b04-230af6a55f0b",
+            "id": "a581e9ed-7b8d-45c5-b99f-61251b0b04f7",
             "value": "1"
           },
           {
-            "id": "0325511a-ae5b-4a29-b8d8-a752e7bf5931",
+            "id": "a8f59211-e9d7-4dc6-8167-626b10ad691d",
             "value": "2"
           },
           {
-            "id": "0e803b96-6cda-4db5-8c05-ca82199816c8",
+            "id": "deb27d32-0cf1-4c28-b8c0-7bee3ca61181",
             "value": "3"
           }
         ]
       },
-      "SuccessfulCheckedOutPrompt": {
+      "WelcomePrompt": {
         "position": {
-          "x": 5320,
-          "y": 1040
+          "x": 840,
+          "y": -0.8
         },
         "isFriendlyName": true
       },
@@ -417,6 +405,41 @@
         },
         "isFriendlyName": true,
         "dynamicParams": []
+      },
+      "CheckInWaitPrompt": {
+        "position": {
+          "x": 4758.4,
+          "y": 1298.4
+        },
+        "isFriendlyName": true
+      },
+      "CheckActionType2": {
+        "position": {
+          "x": 2800,
+          "y": 260
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "fa877e7b-66ff-4958-b458-3281fe4e958d",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "CheckIn"
+          },
+          {
+            "id": "04204f9e-fbeb-4dde-ba14-36ac54b73373",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "CheckOut"
+          }
+        ]
       },
       "PerformCheckInOut": {
         "position": {
@@ -431,67 +454,58 @@
         },
         "dynamicMetadata": {}
       },
-      "CheckInWaitPrompt": {
+      "CheckOutWaitPrompt": {
         "position": {
-          "x": 4760,
-          "y": 1300
-        },
-        "isFriendlyName": true
-      },
-      "ErrorPrompt": {
-        "position": {
-          "x": 840,
+          "x": 2800,
           "y": 520
         },
         "isFriendlyName": true
       },
-      "CheckActionType3": {
+      "GetSEENStatus": {
         "position": {
-          "x": 3080,
+          "x": 2520,
           "y": 0
         },
         "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "SEENGetStatus"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "CheckSeenValidationResponse": {
+        "position": {
+          "x": 1960,
+          "y": 0
+        },
+        "isFriendlyName": true,
+        "conditions": [],
         "conditionMetadata": [
           {
-            "id": "eb8c885f-93e6-40c2-ba14-0dce5853e379",
+            "id": "f8c4fb3b-da4f-469a-ac97-8c326bff03ad",
             "operator": {
               "name": "Equals",
               "value": "Equals",
               "shortDisplay": "="
             },
-            "value": "CheckIn"
-          },
-          {
-            "id": "860b7993-4e19-44f6-8993-fe20b4238a76",
-            "operator": {
-              "name": "Equals",
-              "value": "Equals",
-              "shortDisplay": "="
-            },
-            "value": "CheckOut"
+            "value": "true"
           }
         ]
       },
-      "OverwriteActionType2": {
+      "ErrorPrompt": {
         "position": {
-          "x": 3359.2,
+          "x": 839.2,
+          "y": 519.2
+        },
+        "isFriendlyName": true
+      },
+      "HelloNamePrompt": {
+        "position": {
+          "x": 2239.2,
           "y": -0.8
         },
-        "isFriendlyName": true,
-        "dynamicParams": []
-      },
-      "CurrentlyNotCheckedIn": {
-        "position": {
-          "x": 3079.2,
-          "y": 260
-        },
-        "isFriendlyName": true,
-        "conditionMetadata": [
-          {
-            "id": "709ac2a9-79c7-4f21-b5ae-cbcc7cb60f2b",
-            "value": "1"
-          }
-        ]
+        "isFriendlyName": true
       }
     },
     "Annotations": [],
@@ -502,43 +516,6 @@
     "hash": {}
   },
   "Actions": [
-    {
-      "Parameters": {
-        "FlowLoggingBehavior": "Enabled"
-      },
-      "Identifier": "8937d08f-2036-4019-89ac-2750e51ad53e",
-      "Type": "UpdateFlowLoggingBehavior",
-      "Transitions": {
-        "NextAction": "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c"
-      }
-    },
-    {
-      "Parameters": {
-        "ComparisonValue": "$.External.isValid"
-      },
-      "Identifier": "CheckSeenValidationResponse",
-      "Type": "Compare",
-      "Transitions": {
-        "NextAction": "RenterSeenIdPrompt",
-        "Conditions": [
-          {
-            "NextAction": "HelloNamePrompt",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "true"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "RenterSeenIdPrompt",
-            "ErrorType": "NoMatchingCondition"
-          }
-        ]
-      }
-    },
     {
       "Parameters": {
         "ComparisonValue": "$.External.isCheckedIn"
@@ -568,25 +545,6 @@
     },
     {
       "Parameters": {
-        "Attributes": {
-          "seenId": "$.StoredCustomerInput"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "StoreSEENId",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "6040b57d-802c-46b2-8433-d0472ab7f552",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
         "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENValidateSeenId",
         "InvocationTimeLimitSeconds": "5",
         "InvocationType": "SYNCHRONOUS",
@@ -608,150 +566,6 @@
     },
     {
       "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "Hello $.External.name."
-      },
-      "Identifier": "HelloNamePrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "GetSEENStatus",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENGetStatus",
-        "InvocationTimeLimitSeconds": "3",
-        "InvocationType": "SYNCHRONOUS",
-        "ResponseValidation": {
-          "ResponseType": "STRING_MAP"
-        }
-      },
-      "Identifier": "GetSEENStatus",
-      "Type": "InvokeLambdaFunction",
-      "Transitions": {
-        "NextAction": "CheckSEENStatus",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "VoiceBehavior": {
-          "VoiceRecordingBehavior": {
-            "RecordedParticipants": [],
-            "IVRRecordingBehavior": "Disabled"
-          },
-          "VoiceAnalyticsBehavior": {
-            "Enabled": "False"
-          }
-        }
-      },
-      "Identifier": "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c",
-      "Type": "UpdateContactRecordingAndAnalyticsBehavior",
-      "Transitions": {
-        "NextAction": "WelcomePrompt",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          },
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "ChannelMismatch"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "Hello, thank you for calling SEEN I V R."
-      },
-      "Identifier": "WelcomePrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureMainMenu",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "actionType": "CheckIn"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "SetActionTypeCheckIn",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "CaptureSEENId",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "You entry is invalid.  Please try again."
-      },
-      "Identifier": "RenterSeenIdPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureSEENId",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "actionType": "CheckOut"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "SetActionTypeCheckOut",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "CaptureSEENId",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {},
-      "Identifier": "83b76e76-52cc-4732-81ff-1519b0c0f132",
-      "Type": "DisconnectParticipant",
-      "Transitions": {}
-    },
-    {
-      "Parameters": {
         "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENValidateSubstation",
         "InvocationTimeLimitSeconds": "3",
         "InvocationType": "SYNCHRONOUS",
@@ -763,23 +577,6 @@
       "Type": "InvokeLambdaFunction",
       "Transitions": {
         "NextAction": "CheckSubstationStatus",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "Your entry is not recognized. Please try again."
-      },
-      "Identifier": "MakeValidMainMenuSelection",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureMainMenu",
         "Errors": [
           {
             "NextAction": "ErrorPrompt",
@@ -811,6 +608,25 @@
     {
       "Parameters": {
         "Attributes": {
+          "actionType": "CheckOut"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "OverwriteActionTypeCheckOut",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "PerformCheckInOut",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
           "actionType": "RouteCall"
         },
         "TargetContact": "Current"
@@ -823,211 +639,6 @@
           {
             "NextAction": "ErrorPrompt",
             "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "StoreInput": "True",
-        "InputTimeLimitSeconds": "5",
-        "Text": "Please enter your SEEN I D\n",
-        "DTMFConfiguration": {
-          "DisableCancelKey": "False",
-          "InputTerminationSequence": "#",
-          "InterdigitTimeLimitSeconds": "5"
-        },
-        "InputValidation": {
-          "CustomValidation": {
-            "MaximumLength": "6"
-          }
-        }
-      },
-      "Identifier": "CaptureSEENId",
-      "Type": "GetParticipantInput",
-      "Transitions": {
-        "NextAction": "StoreSEENId",
-        "Errors": [
-          {
-            "NextAction": "InvalidActionPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "Invalid option."
-      },
-      "Identifier": "InvalidActionPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureSEENId",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "substationId": "$.StoredCustomerInput"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "StoreSubStationId",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "ValidateSubStationID",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "StoreInput": "True",
-        "InputTimeLimitSeconds": "5",
-        "Text": "Enter Substation I D",
-        "DTMFConfiguration": {
-          "DisableCancelKey": "False",
-          "InterdigitTimeLimitSeconds": "5"
-        },
-        "InputValidation": {
-          "CustomValidation": {
-            "MaximumLength": "6"
-          }
-        }
-      },
-      "Identifier": "CaptureSubStationID",
-      "Type": "GetParticipantInput",
-      "Transitions": {
-        "NextAction": "StoreSubStationId",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "You entered an Invalid Sub Station."
-      },
-      "Identifier": "InvalidSubstationPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureSubStationID",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "ComparisonValue": "$.External.isValid"
-      },
-      "Identifier": "CheckSubstationStatus",
-      "Type": "Compare",
-      "Transitions": {
-        "NextAction": "InvalidSubstationPrompt",
-        "Conditions": [
-          {
-            "NextAction": "ConfirmSubstationName",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "true"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "InvalidSubstationPrompt",
-            "ErrorType": "NoMatchingCondition"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "I got it.  You would like to check in to $.External.substationName"
-      },
-      "Identifier": "ConfirmSubstationName",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CapturePhoneNumber",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "You are successfully checked in.  You may hang up now, otherwise you will be redirected to main menu."
-      },
-      "Identifier": "SuccessfulCheckedInPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureMainMenu",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "ComparisonValue": "$.Attributes.actionType"
-      },
-      "Identifier": "CheckActionType2",
-      "Type": "Compare",
-      "Transitions": {
-        "NextAction": "ErrorPrompt",
-        "Conditions": [
-          {
-            "NextAction": "CurrentlyCheckedIn",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "CheckIn"
-              ]
-            }
-          },
-          {
-            "NextAction": "CheckOutWaitPrompt",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "CheckOut"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingCondition"
           }
         ]
       }
@@ -1071,6 +682,255 @@
     },
     {
       "Parameters": {
+        "Attributes": {
+          "seenId": "$.StoredCustomerInput"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "StoreSEENId",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "6040b57d-802c-46b2-8433-d0472ab7f552",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "actionType": "CheckIn"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "SetActionTypeCheckIn",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "CaptureSEENId",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "actionType": "CheckOut"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "SetActionTypeCheckOut",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "CaptureSEENId",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "substationId": "$.StoredCustomerInput"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "StoreSubStationId",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "ValidateSubStationID",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Your entry is not recognized. <break time=\"300ms\"/> Please try again."
+      },
+      "Identifier": "MakeValidMainMenuSelection",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureMainMenu",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "Invalid option."
+      },
+      "Identifier": "InvalidActionPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureSEENId",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "True",
+        "InputTimeLimitSeconds": "5",
+        "SSML": "Enter your SEEN \n  <say-as interpret-as=\"characters\">ID</say-as>.\n\n",
+        "DTMFConfiguration": {
+          "DisableCancelKey": "False",
+          "InputTerminationSequence": "#",
+          "InterdigitTimeLimitSeconds": "5"
+        },
+        "InputValidation": {
+          "CustomValidation": {
+            "MaximumLength": "6"
+          }
+        }
+      },
+      "Identifier": "CaptureSEENId",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "StoreSEENId",
+        "Errors": [
+          {
+            "NextAction": "InvalidActionPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "Your entry is invalid. <break time=\"300ms\"/> Please try again."
+      },
+      "Identifier": "RenterSeenIdPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureSEENId",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "83b76e76-52cc-4732-81ff-1519b0c0f132",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "StoreInput": "True",
+        "InputTimeLimitSeconds": "5",
+        "SSML": "Enter  \nSubstation <say-as interpret-as=\"characters\">ID</say-as>.",
+        "DTMFConfiguration": {
+          "DisableCancelKey": "False",
+          "InterdigitTimeLimitSeconds": "5"
+        },
+        "InputValidation": {
+          "CustomValidation": {
+            "MaximumLength": "6"
+          }
+        }
+      },
+      "Identifier": "CaptureSubStationID",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "StoreSubStationId",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "You entered an invalid <break time=\"200ms\"/> Substation <say-as interpret-as=\"characters\">ID</say-as>."
+      },
+      "Identifier": "InvalidSubstationPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureSubStationID",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.isValid"
+      },
+      "Identifier": "CheckSubstationStatus",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "InvalidSubstationPrompt",
+        "Conditions": [
+          {
+            "NextAction": "ConfirmSubstationName",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "InvalidSubstationPrompt",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "I got it.  You would like to check in to <prosody rate=\"95%\">$.External.substationName</prosody> <break time=\"100ms\"/>."
+      },
+      "Identifier": "ConfirmSubstationName",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CapturePhoneNumber",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
         "StoreInput": "True",
         "InputTimeLimitSeconds": "5",
         "Text": "Enter your call back phone number",
@@ -1103,7 +963,7 @@
     {
       "Parameters": {
         "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "You entered an invalid phone number."
+        "SSML": "You have entered an invalid <break time=\"100ms\"/> phone number."
       },
       "Identifier": "InvalidPhoneNumberPrompt",
       "Type": "MessageParticipant",
@@ -1119,278 +979,27 @@
     },
     {
       "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "I see you are currently checked in to $.External.substationName.  Please wait while I check you out."
+        "FlowLoggingBehavior": "Enabled"
       },
-      "Identifier": "CheckOutWaitPrompt",
-      "Type": "MessageParticipant",
+      "Identifier": "8937d08f-2036-4019-89ac-2750e51ad53e",
+      "Type": "UpdateFlowLoggingBehavior",
       "Transitions": {
-        "NextAction": "PerformCheckInOut",
+        "NextAction": "SetTTSVoice"
+      }
+    },
+    {
+      "Parameters": {
+        "TextToSpeechVoice": "Joanna",
+        "TextToSpeechEngine": "Neural",
+        "TextToSpeechStyle": "Conversational"
+      },
+      "Identifier": "SetTTSVoice",
+      "Type": "UpdateContactTextToSpeechVoice",
+      "Transitions": {
+        "NextAction": "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c",
         "Errors": [
           {
             "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "actionType": "CheckOut"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "OverwriteActionTypeCheckOut",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "PerformCheckInOut",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "The call is ending now."
-      },
-      "Identifier": "CallEndPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "ComparisonValue": "$.External.success"
-      },
-      "Identifier": "CheckCheckInOutStatus",
-      "Type": "Compare",
-      "Transitions": {
-        "NextAction": "UnableToCheckIn",
-        "Conditions": [
-          {
-            "NextAction": "CheckActionType",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "true"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "UnableToCheckIn",
-            "ErrorType": "NoMatchingCondition"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "We are unable to check you in now.  Please try again later."
-      },
-      "Identifier": "UnableToCheckIn",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CallEndPrompt",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "ComparisonValue": "$.Attributes.actionType"
-      },
-      "Identifier": "CheckActionType",
-      "Type": "Compare",
-      "Transitions": {
-        "NextAction": "ErrorPrompt",
-        "Conditions": [
-          {
-            "NextAction": "SuccessfulCheckedInPrompt",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "CheckIn"
-              ]
-            }
-          },
-          {
-            "NextAction": "SuccessfulCheckedOutPrompt",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "CheckOut"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingCondition"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "StoreInput": "False",
-        "InputTimeLimitSeconds": "5",
-        "Text": "Please select 1 to check in, 2 to check out and 3 to route your call."
-      },
-      "Identifier": "CaptureMainMenu",
-      "Type": "GetParticipantInput",
-      "Transitions": {
-        "NextAction": "MakeValidMainMenuSelection",
-        "Conditions": [
-          {
-            "NextAction": "SetActionTypeCheckIn",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "1"
-              ]
-            }
-          },
-          {
-            "NextAction": "SetActionTypeCheckOut",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "2"
-              ]
-            }
-          },
-          {
-            "NextAction": "SetActionTypeRouteCall",
-            "Condition": {
-              "Operator": "Equals",
-              "Operands": [
-                "3"
-              ]
-            }
-          }
-        ],
-        "Errors": [
-          {
-            "NextAction": "MakeValidMainMenuSelection",
-            "ErrorType": "InputTimeLimitExceeded"
-          },
-          {
-            "NextAction": "MakeValidMainMenuSelection",
-            "ErrorType": "NoMatchingCondition"
-          },
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "You are successfully checked out.  You may hang up now, otherwise you will be redirected to main menu."
-      },
-      "Identifier": "SuccessfulCheckedOutPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "CaptureMainMenu",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "Attributes": {
-          "callbackNumber": "$.StoredCustomerInput"
-        },
-        "TargetContact": "Current"
-      },
-      "Identifier": "StoreCallbackNumber",
-      "Type": "UpdateContactAttributes",
-      "Transitions": {
-        "NextAction": "CheckInWaitPrompt",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENCheckInOutHandler",
-        "InvocationTimeLimitSeconds": "3",
-        "InvocationType": "SYNCHRONOUS",
-        "ResponseValidation": {
-          "ResponseType": "STRING_MAP"
-        }
-      },
-      "Identifier": "PerformCheckInOut",
-      "Type": "InvokeLambdaFunction",
-      "Transitions": {
-        "NextAction": "CheckCheckInOutStatus",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "Please wait while are checked in to $.External.substationName"
-      },
-      "Identifier": "CheckInWaitPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "PerformCheckInOut",
-        "Errors": [
-          {
-            "NextAction": "ErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "We're sorry, an error occurred. Goodbye."
-      },
-      "Identifier": "ErrorPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
-        "Errors": [
-          {
-            "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
             "ErrorType": "NoMatchingError"
           }
         ]
@@ -1455,7 +1064,7 @@
       "Parameters": {
         "StoreInput": "False",
         "InputTimeLimitSeconds": "5",
-        "Text": "I do not see you are currently checked in.  Press one to check in instead, or any other key to redirect to main menu."
+        "SSML": "I’m sorry, I do not see that you are currently checked in. <break time=\"350ms\"/>\nTo check in, press 1. <break time=\"200ms\"/>\nOr press any other key to return to the main menu <break time=\"250ms\"/>."
       },
       "Identifier": "CurrentlyNotCheckedIn",
       "Type": "GetParticipantInput",
@@ -1481,6 +1090,429 @@
             "NextAction": "CaptureMainMenu",
             "ErrorType": "NoMatchingCondition"
           },
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.success"
+      },
+      "Identifier": "CheckCheckInOutStatus",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "UnableToCheckIn",
+        "Conditions": [
+          {
+            "NextAction": "CheckActionType",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "UnableToCheckIn",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "The call is ending now."
+      },
+      "Identifier": "CallEndPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "We are unable to check you in now. <break time=\"200ms\"/> Please try again later."
+      },
+      "Identifier": "UnableToCheckIn",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CallEndPrompt",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "You are now successfully checked in. <break time=\"200ms\"/> You may hang up now, otherwise you will be redirected to main menu <break time=\"400ms\"/>."
+      },
+      "Identifier": "SuccessfulCheckedInPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureMainMenu",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.Attributes.actionType"
+      },
+      "Identifier": "CheckActionType",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "ErrorPrompt",
+        "Conditions": [
+          {
+            "NextAction": "SuccessfulCheckedInPrompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "CheckIn"
+              ]
+            }
+          },
+          {
+            "NextAction": "SuccessfulCheckedOutPrompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "CheckOut"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "You are now successfully checked out. <break time=\"200ms\"/> You may hang up now, otherwise you will be redirected to main menu <break time=\"400ms\"/>."
+      },
+      "Identifier": "SuccessfulCheckedOutPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureMainMenu",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "VoiceBehavior": {
+          "VoiceRecordingBehavior": {
+            "RecordedParticipants": [],
+            "IVRRecordingBehavior": "Disabled"
+          },
+          "VoiceAnalyticsBehavior": {
+            "Enabled": "False"
+          }
+        }
+      },
+      "Identifier": "6532432b-c6b3-43e7-8bbd-462b1aa6ca4c",
+      "Type": "UpdateContactRecordingAndAnalyticsBehavior",
+      "Transitions": {
+        "NextAction": "WelcomePrompt",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          },
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "ChannelMismatch"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "False",
+        "InputTimeLimitSeconds": "5",
+        "SSML": "Please select <break time=\"200ms\"/> \n  1 to check in, \n  <break time=\"300ms\"/> \n  2 to check out, \n  <break time=\"300ms\"/> \n  and 3 to route your call."
+      },
+      "Identifier": "CaptureMainMenu",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "MakeValidMainMenuSelection",
+        "Conditions": [
+          {
+            "NextAction": "SetActionTypeCheckIn",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "1"
+              ]
+            }
+          },
+          {
+            "NextAction": "SetActionTypeCheckOut",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "2"
+              ]
+            }
+          },
+          {
+            "NextAction": "SetActionTypeRouteCall",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "3"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "MakeValidMainMenuSelection",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          {
+            "NextAction": "MakeValidMainMenuSelection",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": " Thank you for calling SEEN <say-as interpret-as=\"characters\">IVR</say-as>."
+      },
+      "Identifier": "WelcomePrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "CaptureMainMenu",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "callbackNumber": "$.StoredCustomerInput"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "StoreCallbackNumber",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "CheckInWaitPrompt",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "Please wait while you are checked in to <break time=\"200ms\"/>\n<prosody rate=\"95%\">$.External.substationName</prosody>"
+      },
+      "Identifier": "CheckInWaitPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "PerformCheckInOut",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.Attributes.actionType"
+      },
+      "Identifier": "CheckActionType2",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "ErrorPrompt",
+        "Conditions": [
+          {
+            "NextAction": "CurrentlyCheckedIn",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "CheckIn"
+              ]
+            }
+          },
+          {
+            "NextAction": "CheckOutWaitPrompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "CheckOut"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENCheckInOutHandler",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "PerformCheckInOut",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "CheckCheckInOutStatus",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "I see you are currently checked in to <break time=\"200ms\"/>\n<prosody rate=\"95%\">$.External.substationName</prosody>\n<break time=\"300ms\"/>\nPlease wait while I check you out."
+      },
+      "Identifier": "CheckOutWaitPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "PerformCheckInOut",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-west-2:044336301301:function:SEENGetStatus",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "GetSEENStatus",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "CheckSEENStatus",
+        "Errors": [
+          {
+            "NextAction": "ErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.isValid"
+      },
+      "Identifier": "CheckSeenValidationResponse",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "RenterSeenIdPrompt",
+        "Conditions": [
+          {
+            "NextAction": "HelloNamePrompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "RenterSeenIdPrompt",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "Text": "We're sorry, an error occurred. <break time=\"300ms\"/> Goodbye."
+      },
+      "Identifier": "ErrorPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
+        "Errors": [
+          {
+            "NextAction": "83b76e76-52cc-4732-81ff-1519b0c0f132",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "Hello <prosody rate=\"95%\">$.External.name</prosody>."
+      },
+      "Identifier": "HelloNamePrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "GetSEENStatus",
+        "Errors": [
           {
             "NextAction": "ErrorPrompt",
             "ErrorType": "NoMatchingError"

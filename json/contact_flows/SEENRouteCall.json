@@ -7,33 +7,12 @@
       "y": 40
     },
     "ActionMetadata": {
-      "RouteInvalidOption": {
+      "RouteDisconnect": {
         "position": {
-          "x": 121.6,
-          "y": 429.6
+          "x": 689.6,
+          "y": 386.4
         },
         "isFriendlyName": true
-      },
-      "RouteMainMenu": {
-        "position": {
-          "x": 168,
-          "y": 38.4
-        },
-        "isFriendlyName": true,
-        "conditionMetadata": [
-          {
-            "id": "d00d7258-7535-493a-be7c-42cc96f29eae",
-            "value": "1"
-          },
-          {
-            "id": "532a93d6-f983-487f-b7f0-31af5f9a2509",
-            "value": "2"
-          },
-          {
-            "id": "34f16e46-0173-4d77-b1c9-81be56f70acc",
-            "value": "3"
-          }
-        ]
       },
       "8d864514-8b0f-4213-a3d7-a18a5e38a82e": {
         "position": {
@@ -47,6 +26,13 @@
         },
         "CountryCode": "us"
       },
+      "RouteInvalidOption": {
+        "position": {
+          "x": 121.6,
+          "y": 429.6
+        },
+        "isFriendlyName": true
+      },
       "RouteErrorPrompt": {
         "position": {
           "x": 423.2,
@@ -54,26 +40,72 @@
         },
         "isFriendlyName": true
       },
-      "RouteDisconnect": {
+      "RouteMainMenu": {
         "position": {
-          "x": 689.6,
-          "y": 386.4
+          "x": 167.2,
+          "y": 37.6
         },
-        "isFriendlyName": true
+        "isFriendlyName": true,
+        "conditionMetadata": [
+          {
+            "id": "8f6dbe7c-e9e2-464c-a6fc-dddb6e0922e9",
+            "value": "1"
+          },
+          {
+            "id": "8a630664-4215-42fb-b038-7ce357455eac",
+            "value": "2"
+          },
+          {
+            "id": "993ec2c7-fcd5-4164-bebd-3602e4ed9adf",
+            "value": "3"
+          }
+        ]
       }
     },
     "Annotations": [],
     "name": "SEENRouteCall",
-    "description": "",
+    "description": "SEEN Route Call Contact Flow Module",
     "status": "published",
     "settings": {},
     "hash": {}
   },
   "Actions": [
     {
+      "Parameters": {},
+      "Identifier": "RouteDisconnect",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "ThirdPartyPhoneNumber": "+19722000725",
+        "ThirdPartyConnectionTimeLimitSeconds": "30",
+        "ContinueFlowExecution": "True"
+      },
+      "Identifier": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
+      "Type": "TransferParticipantToThirdParty",
+      "Transitions": {
+        "NextAction": "RouteDisconnect",
+        "Errors": [
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "CallFailed"
+          },
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "ConnectionTimeLimitExceeded"
+          },
+          {
+            "NextAction": "RouteErrorPrompt",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
       "Parameters": {
         "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "I didn't understand your selection.  "
+        "SSML": "I’m sorry, I did not understand your selection. <break time=\"200ms\"/> Please try again."
       },
       "Identifier": "RouteInvalidOption",
       "Type": "MessageParticipant",
@@ -89,9 +121,26 @@
     },
     {
       "Parameters": {
+        "SkipWhenDTMFBufferEnabled": "false",
+        "SSML": "We are experiencing difficulties in forwarding your call. <break time=\"200ms\"/> Please try again later."
+      },
+      "Identifier": "RouteErrorPrompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "RouteDisconnect",
+        "Errors": [
+          {
+            "NextAction": "RouteDisconnect",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
         "StoreInput": "False",
         "InputTimeLimitSeconds": "5",
-        "Text": "Press 1 to forward your call to EDOC, 2 to TGM, 3 to WDOC"
+        "Text": "Press 1 to forward your call to East doc, <break time=\"200ms\"/>\n2 to TGM, <break time=\"200ms\"/>\n3 to West doc."
       },
       "Identifier": "RouteMainMenu",
       "Type": "GetParticipantInput",
@@ -141,55 +190,6 @@
           }
         ]
       }
-    },
-    {
-      "Parameters": {
-        "ThirdPartyPhoneNumber": "+19722000725",
-        "ThirdPartyConnectionTimeLimitSeconds": "30",
-        "ContinueFlowExecution": "True"
-      },
-      "Identifier": "8d864514-8b0f-4213-a3d7-a18a5e38a82e",
-      "Type": "TransferParticipantToThirdParty",
-      "Transitions": {
-        "NextAction": "RouteDisconnect",
-        "Errors": [
-          {
-            "NextAction": "RouteErrorPrompt",
-            "ErrorType": "CallFailed"
-          },
-          {
-            "NextAction": "RouteErrorPrompt",
-            "ErrorType": "ConnectionTimeLimitExceeded"
-          },
-          {
-            "NextAction": "RouteErrorPrompt",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {
-        "SkipWhenDTMFBufferEnabled": "false",
-        "Text": "We are experiencing difficulties in forwarding your call.  Please try again later.."
-      },
-      "Identifier": "RouteErrorPrompt",
-      "Type": "MessageParticipant",
-      "Transitions": {
-        "NextAction": "RouteDisconnect",
-        "Errors": [
-          {
-            "NextAction": "RouteDisconnect",
-            "ErrorType": "NoMatchingError"
-          }
-        ]
-      }
-    },
-    {
-      "Parameters": {},
-      "Identifier": "RouteDisconnect",
-      "Type": "DisconnectParticipant",
-      "Transitions": {}
     }
   ],
   "Settings": {
